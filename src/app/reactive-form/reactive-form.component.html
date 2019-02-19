@@ -1,0 +1,21 @@
+<form [formGroup]="reactiveForm">
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password" formControlName="password">
+    <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+      Please enter a password
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" placeholder="Confirm Password" formControlName="passwordConfirm">
+    <mat-error *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)">
+      <p *ngIf="passwordConfirm.errors['required']">Please enter the confirm password</p>
+      <p *ngIf="passwordConfirm.errors['compare']">Confirm Password do <strong>not match</strong></p>
+    </mat-error>
+    <!-- <mat-error *ngIf="passwordConfirm.errors['compare']">
+      Confirm Password do <strong>not match</strong>
+    </mat-error> -->
+  </mat-form-field>
+</form>
+
+<h4>{{ reactiveForm.valid }}</h4>
+<pre>{{ reactiveForm.value | json}}</pre>
